@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -53,7 +54,7 @@ class GameControllerTest {
 		try{
 			gc.updateView("Test ViewController Message");
 			gc.updateView("Test ViewController Message");
-			assertEquals(expectedOutput.toString(), outputStream.toString());
+			assertThat(outputStream.toString()).isEqualTo(expectedOutput.toString());
 		}
 		finally{
 			System.setOut(consoleOut);		
@@ -64,7 +65,7 @@ class GameControllerTest {
 	void testTurnRover() {
 		GameController gc = setupGameController();
 		gc.move("R");
-		assertEquals("E", gc.getHeading());
+		assertThat(gc.getHeading()).isEqualTo("E");
 	}
 	
 	@Test
@@ -72,6 +73,6 @@ class GameControllerTest {
 		Point expected = new Point(0,9,0);
 		GameController gc = setupGameController();
 		gc.move("B");
-		assertTrue(expected.equals(gc.getPosition()));
+		assertThat(gc.getPosition()).isNotNull().isEqualTo(expected);
 	}
 }
