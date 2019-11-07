@@ -1,6 +1,7 @@
 package rover;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Grid {
 	private int height;
@@ -31,7 +32,7 @@ public class Grid {
 			for (int i = 0; i < obstacles.size(); i++) {
 				 currentObstacle = obstacles.get(i);
 				if (position.equals(currentObstacle)) {
-					throw new ObstacleEncoutered("Obstacle Encoutered");
+					throw new ObstacleEncountered("Obstacle Encountered");
 				}
 			}
 		}
@@ -42,9 +43,9 @@ public class Grid {
 	}
 
 	@SuppressWarnings("serial")
-	static final class ObstacleEncoutered extends RuntimeException {
+	static final class ObstacleEncountered extends RuntimeException {
 
-		public ObstacleEncoutered(String string) {
+		public ObstacleEncountered(String string) {
 			super(string);
 		}
 	}

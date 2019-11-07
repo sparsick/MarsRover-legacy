@@ -41,7 +41,7 @@ class GridTest {
             grid.checkForObstacle(new Point(1, 1, 0));
         };
         assertThatCode(codeUnderTest)
-                .isInstanceOf(Grid.ObstacleEncoutered.class)
-                .hasMessage("Obstacle Encoutered");
+                .isInstanceOf(Grid.ObstacleEncountered.class)
+                .hasMessage("Obstacle Encountered");
     }
 }

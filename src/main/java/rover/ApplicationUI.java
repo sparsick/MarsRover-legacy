@@ -1,17 +1,17 @@
 package rover;
 
+import rover.Grid.ObstacleEncountered;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
-import rover.Grid.ObstacleEncoutered;
 
 
 public class ApplicationUI {
 	static final String QUIT_OPTION = "Q";
 	static final String INSTRUCTION_PROMPT = "Use (L)eft, (R)ight (F)orward and (B)ackwards to move rover. Use to (Q)uit.";
 	static final String STATUS = "Heading: %s; Position x = %d, y = %d, z = %d";
-	static final String OBSTACLE_MESSAGE = "Obstacle Encoutered";
+	static final String OBSTACLE_MESSAGE = "Obstacle Encountered";
 
 	private Model model;
 	private Grid grid;
@@ -54,8 +54,8 @@ public class ApplicationUI {
 
 	private void tryToMove(String line) throws IOException {
 		try {
-			gc.move(line);			
-		} catch (ObstacleEncoutered e) {
+			gc.move(line);
+		} catch (ObstacleEncountered e) {
 			writeln(e.getMessage());
 		}
 	}

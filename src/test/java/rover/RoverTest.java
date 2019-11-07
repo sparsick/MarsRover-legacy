@@ -1,8 +1,10 @@
 package rover;
 
-import static org.junit.Assert.*;
-import org.junit.*;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import static org.junit.Assert.assertEquals;
 
 public class RoverTest {
 	private Model rover;
@@ -281,23 +283,23 @@ public class RoverTest {
 
 	@Test
 	public void testFoundObstacleForward() {
-		thrown.expect(Grid.ObstacleEncoutered.class);
+		thrown.expect(Grid.ObstacleEncountered.class);
 		createRoverOnGrid(x, y, direction);
 		mars.addObstacleAt(0, 1, 0);
 		goForward();
 	}
 
 	@Test
-	public void throwsExceptionEncouterObstacleBackward() {
-		thrown.expect(Grid.ObstacleEncoutered.class);
+	public void throwsExceptionEncounteredObstacleBackward() {
+		thrown.expect(Grid.ObstacleEncountered.class);
 		createRoverOnGrid(x, y, direction);
 		mars.addObstacleAt(0, 9, 0);
 		goBackward();
 	}
 
 	@Test
-	public void throwsExceptionEncouterObstacleBackwardSouth() {
-		thrown.expect(Grid.ObstacleEncoutered.class);
+	public void throwsExceptionEncounteredObstacleBackwardSouth() {
+		thrown.expect(Grid.ObstacleEncountered.class);
 		direction = "S";
 		createRoverOnGrid(x, y, direction);
 		mars.addObstacleAt(0, 1, 0);
@@ -305,8 +307,8 @@ public class RoverTest {
 	}
 
 	@Test
-	public void throwsExceptionEncouterObstacleForwardSouth() {
-		thrown.expect(Grid.ObstacleEncoutered.class);
+	public void throwsExceptionEncounteredObstacleForwardSouth() {
+		thrown.expect(Grid.ObstacleEncountered.class);
 		direction = "S";
 		createRoverOnGrid(x, y, direction);
 		mars.addObstacleAt(0, 9, 0);
