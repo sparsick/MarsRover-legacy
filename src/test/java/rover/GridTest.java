@@ -1,46 +1,46 @@
 package rover;
 
-import static org.junit.Assert.*;
+import org.assertj.core.api.ThrowableAssert;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class GridTest {
-	private Grid grid;
-	private int height = 10;
-	int width = 11;
+class GridTest {
+    private Grid grid;
+    private int height = 10;
+    private int width = 11;
 
-	private void createGrid(int height, int width) {
-		grid = new Grid(height,width);
-	}
+    private void createGrid(int height, int width) {
+        grid = new Grid(height, width);
+    }
 
-	@Rule
-	public ExpectedException thrown = ExpectedException.none();
 
-	
-	@Test
-	public void testGridHeightAndWidth() {
-		createGrid(height, width);
-		assertEquals(10,grid.getHeight());
-		assertEquals(11,grid.getWidth());
-	}
-	
-	@Test
-	public void testDifferentHeightAndWidth() {
-		int height = 12;
-		int width = 13;
-		createGrid(height, width);
-		assertEquals(12,grid.getHeight());
-		assertEquals(13,grid.getWidth());
-	}
-		
-	@Test
-	public void testHasObstacleAtAndThrowsException() {
-		thrown.expect(Grid.ObstacleEncoutered.class);
-		thrown.expectMessage("Obstacle Encoutered");
-		createGrid(height, width);
-		grid.addObstacleAt(1, 1, 0);
-		grid.checkForObstacle(new Point(1,1,0));		
-	}
+    @Test
+    void testGridHeightAndWidth() {
+        createGrid(height, width);
+        assertEquals(10, grid.getHeight());
+        assertEquals(11, grid.getWidth());
+    }
+
+    @Test
+    void testDifferentHeightAndWidth() {
+        int height = 12;
+        int width = 13;
+        createGrid(height, width);
+        assertEquals(12, grid.getHeight());
+        assertEquals(13, grid.getWidth());
+    }
+
+    @Test
+    void testHasObstacleAtAndThrowsException() {
+        ThrowableAssert.ThrowingCallable codeUnderTest = () -> {
+            createGrid(height, width);
+            grid.addObstacleAt(1, 1, 0);
+            grid.checkForObstacle(new Point(1, 1, 0));
+        };
+        assertThatCode(codeUnderTest)
+                .isInstanceOf(Grid.ObstacleEncoutered.class)
+                .hasMessage("Obstacle Encoutered");
+    }
 }
