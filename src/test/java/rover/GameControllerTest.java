@@ -1,19 +1,20 @@
 package rover;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class GameControllerTest {
-	static final String TEST_MESSAGE = "Test ViewController Message";
+class GameControllerTest {
+	private static final String TEST_MESSAGE = "Test ViewController Message";
 
-	StringBuffer expectedOutput = new StringBuffer();
-	OutputStream outputStream = new ByteArrayOutputStream();
+	private StringBuffer expectedOutput = new StringBuffer();
+	private OutputStream outputStream = new ByteArrayOutputStream();
 
 	private Model rover = new Rover(0, 0, 0, "N");
 	private Grid grid = new Grid(9, 9);
@@ -43,7 +44,7 @@ public class GameControllerTest {
 	}
 
 	@Test
-	public void testUpdateGameView() throws IOException {
+	void testUpdateGameView() throws IOException {
 		setupExpectOutput(expectedOutput);
 		PrintStream consoleOut = setupPrintStream();
 
@@ -60,14 +61,14 @@ public class GameControllerTest {
 	}
 
 	@Test
-	public void testTurnRover() {
+	void testTurnRover() {
 		GameController gc = setupGameController();
 		gc.move("R");
 		assertEquals("E", gc.getHeading());
 	}
 	
 	@Test
-	public void testMoveRover() {
+	void testMoveRover() {
 		Point expected = new Point(0,9,0);
 		GameController gc = setupGameController();
 		gc.move("B");

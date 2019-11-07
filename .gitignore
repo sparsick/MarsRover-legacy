@@ -6,3 +6,6 @@
 .DS_Store
 *.dat
 *.class
+/mars-rover-legacy.iml
+target/
+.idea/
