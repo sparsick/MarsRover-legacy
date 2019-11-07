@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PointTest {
 
-    private static Stream<TestPoint> giveMeSomeValuesDammit() {
+    private static Stream<TestPoint> testPoints() {
         return Stream.of(
                 new TestPoint(0, 0, 0),
                 new TestPoint(1, 0, 0),
@@ -24,7 +24,7 @@ class PointTest {
     }
 
     @ParameterizedTest
-    @MethodSource("giveMeSomeValuesDammit")
+    @MethodSource("testPoints")
     void testPoints(TestPoint tp) {
         assertThat(createPoint(tp.x, tp.y, tp.z))
                 .hasFieldOrPropertyWithValue("x", tp.x)
@@ -36,13 +36,14 @@ class PointTest {
     void testEqual() {
         Point point1 = createPoint(0, 2, 5);
         Point point2 = createPoint(0, 2, 5);
+        //noinspection SimplifiableJUnitAssertion
         assertTrue(point1.equals(point2));
     }
 
     private static class TestPoint {
-        public int x, y, z;
+        int x, y, z;
 
-        public TestPoint(int x, int y, int z) {
+        TestPoint(int x, int y, int z) {
             this.x = x;
             this.y = y;
             this.z = z;
