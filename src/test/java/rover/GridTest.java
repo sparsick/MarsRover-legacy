@@ -3,39 +3,40 @@ package rover;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GridTest {
-    private Grid grid;
     private int height = 10;
     private int width = 11;
 
-    private void createGrid(int height, int width) {
-        grid = new Grid(height, width);
+    private Grid createGrid(int height, int width) {
+        return new Grid(height, width);
     }
 
 
     @Test
     void testGridHeightAndWidth() {
-        createGrid(height, width);
-        assertEquals(10, grid.getHeight());
-        assertEquals(11, grid.getWidth());
+        Grid grid = createGrid(height, width);
+        assertThat(grid)
+                .hasFieldOrPropertyWithValue("height", 10)
+                .hasFieldOrPropertyWithValue("width", 11);
     }
 
     @Test
     void testDifferentHeightAndWidth() {
         int height = 12;
         int width = 13;
-        createGrid(height, width);
-        assertEquals(12, grid.getHeight());
-        assertEquals(13, grid.getWidth());
+        Grid grid = createGrid(height, width);
+        assertThat(grid)
+                .hasFieldOrPropertyWithValue("height", 12)
+                .hasFieldOrPropertyWithValue("width", 13);
     }
 
     @Test
     void testHasObstacleAtAndThrowsException() {
         ThrowableAssert.ThrowingCallable codeUnderTest = () -> {
-            createGrid(height, width);
+            Grid grid = createGrid(height, width);
             grid.addObstacleAt(1, 1, 0);
             grid.checkForObstacle(new Point(1, 1, 0));
         };
